@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% block content %}
+<body>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <h1 class="text-center" style="padding-bottom:20px"> Subscriber List </h1>
+            <table class="table table-bordered ">
+              <thead class="thead-dark">
+                <tr>
+                  <th>#</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Email</th>
+                  <th>Address</th>
+                  <th>SSN</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for subscriber in subscribers.items %}
+                <tr>
+                  <th><a href="/subscriber/edit/{{ subscriber.id }}"> {{ loop.index + subscribers.page*subscribers.per_page - subscribers.per_page }}</a></th>
+                  <td>{{ subscriber.first_name }}</td>
+                  <td>{{ subscriber.last_name }}</td>
+                  <td>{{ subscriber.email }}</td>
+                  <td>{{ subscriber.address }}</td>
+                  <td>{{ subscriber.ssn }}</td>
+
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% include 'pagination.html' %}
+ {% endblock %}

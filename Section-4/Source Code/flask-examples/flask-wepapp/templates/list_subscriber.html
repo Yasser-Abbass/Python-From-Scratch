@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+{% block content %}
+<body>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table table-bordered ">
+              <thead class="thead-dark">
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>E-mail</th>
+                  <th>Address</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for subscriber in subscribers.items %}
+                <tr>
+                  <th><a href="/edit/{{ subscriber.id }}">{{ loop.index }}</a> </th>
+                  <td>{{ subscriber.name }}</td>
+                  <td>{{ subscriber.phone }}</td>
+                  <td>{{ subscriber.email }}</td>
+                  <td>{{ subscriber.address }}</td>
+
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include 'pagination.html' %}
+{% endblock %}

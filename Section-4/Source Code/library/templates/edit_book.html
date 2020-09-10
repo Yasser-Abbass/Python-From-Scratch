@@ -1,0 +1,77 @@
+{% extends 'layout.html' %}
+{% block content %}
+<body>
+  <div class="py-5 text-center">
+    <div class="container">
+      <div class="row">
+        <div class="mx-auto col-lg-10 col-10">
+          <form class="text-left" method="post">
+            {{ form.csrf_token }}
+            <div class="form-group row">
+              {{ form.title.label(class="col-sm-2") }}
+              {{ form.title(class="form-control col-sm-8") }}
+            </div>
+            <div class="form-group row">
+              {{ form.author.label(class="col-sm-2") }}
+              {{ form.author(class="form-control col-sm-8", placeholder="Enter values separated by comma") }}
+            </div>
+            <div class="form-group row">
+              {{ form.pages.label(class="col-sm-2") }}
+              {{ form.pages(class="form-control col-sm-8") }}
+            </div>
+            <div class="form-group row">
+              {{ form.publish_date.label(class="col-sm-2") }}
+              {{ form.publish_date(class="form-control col-sm-8") }}
+            </div>
+            <div class="form-group row">
+              {{ form.publisher.label(class="col-sm-2") }}
+              {{ form.publisher(class="form-control col-sm-8") }}
+            </div>
+            <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table table-bordered ">
+              <thead class="thead">
+                <tr>
+                  <th>#</th>
+                  <th>Subscriber</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for item in form.borrowing_history %}
+                <tr>
+                  <th>{{ loop.index }}</th>
+                  <td>{{ item.subscriber.data.email }}</td>
+                  <td>{{ item.data.start }}</td>
+                  <td>{{ item.data.end }}</td>
+
+                </tr>
+              {% endfor %}
+              <tr>
+                  <td></td>
+                  <td>{{ form.subscriber(class="form-control col-sm-8") }}</td>
+                  <td>{{ form.start(class="form-control col-sm-8") }}</td>
+                  <td>{{ form.end(class="form-control col-sm-8") }}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+            {% if status == 'new' %}
+              {{ form.save(class="btn btn-primary") }}
+            {% else %}
+              {{ form.borrow(class='btn btn-secondary') }}
+              {{ form.update(class='btn btn-primary') }}
+              {{ form.delete(class='btn btn-danger') }}
+            {% endif %}
+            <a href="/book/list" class="btn btn-warning">Cancel</a>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+{% block content %}
+<body>
+  <div class="py-5 text-center">
+    <div class="container">
+      <div class="row">
+        <div class="mx-auto col-lg-10 col-10">
+          <h1 style="padding-bottom:20px">Subscriber</h1>
+          <form class="text-left" method="post">
+            {{ form.csrf_token }}
+            <div class="form-group row">
+              {{ form.first_name.label(class="col-sm-2") }}
+              {{ form.first_name(class="form-control col-sm-8") }}
+            </div>
+            <div class="form-group row">
+              {{ form.last_name.label(class="col-sm-2") }}
+              {{ form.last_name(class="form-control col-sm-8") }}
+            </div>
+            <div class="form-group row">
+              {{ form.email.label(class="col-sm-2") }}
+              {{ form.email(class="form-control col-sm-8") }}
+            </div>
+            <div class="form-group row">
+              {{ form.address.label(class="col-sm-2") }}
+              {{ form.address(class="form-control col-sm-8") }}
+            </div>
+            <div class="form-group row">
+              {{ form.ssn.label(class="col-sm-2") }}
+              {{ form.ssn(class="form-control col-sm-8") }}
+            </div>
+            {% if status == 'new' %}
+              {{ form.save(class="btn btn-primary") }}
+            {% else %}
+              {{ form.update(class='btn btn-primary') }}
+              {{ form.delete(class='btn btn-danger') }}
+            {% endif %}
+            <a href="/subscriber/list" class="btn btn-warning">Cancel</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

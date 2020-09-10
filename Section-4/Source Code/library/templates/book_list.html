@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block content %}
+<body>
+  <div class="py-5">
+    <div class="container">
+      {% for row in books.items | batch(4) %}
+      <div class="row">
+        {% for book in row %}
+        <div class="col-md-3">
+          <div class="card"> <img class="card-img-top" src="https://static.pingendo.com/cover-moon.svg" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">{{ book.title }}</h4>
+              <p class="card-text">{{ book.author[0] }}</p>
+              <p class="card-text">{{ book.publisher.name }}</p>
+              <p class="card-text">{{ book.publish_date }}</p>
+              <a href="/book/edit/{{ book.id }}" class="btn btn-primary">Details</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+{% include 'pagination.html' %}
+ {% endblock %}
